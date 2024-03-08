@@ -10,12 +10,9 @@
 
 module.exports.policies = {
   //Guest
-  'GET /admin/guest/add': 'isAdmin',
   'POST /admin/guest/add': 'isAdmin',
-  'GET /admin/guest/update/:id': 'isAdmin',
   'PUT /admin/guest/update/:id': 'isAdmin',
   'GET /admin/guest': 'isAdmin',
-  'GET /admin/guest/delete/:id': 'isAdmin',
   'DELETE /admin/guest/delete/:id': 'isAdmin'
 
 };

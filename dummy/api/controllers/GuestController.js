@@ -4,83 +4,58 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
-
-
+  
 module.exports = {
-    addGuestForm: async function(req, res) {
-      return res.view('Guest/addGuest');
-    },
-  
-    addGuest: async function(req, res) {
+  addGuest: async function(req, res) {
       try {
-        const newGuest = await Guest.create(req.body).fetch();
-        return res.redirect('/admin/guest');
+          const newGuest = await Guest.create(req.body).fetch();
+          return res.json(newGuest); 
       } catch (err) {
-        sails.log.error(err);
-        return res.badRequest('Unable to add this guest');
+          sails.log.error(err);
+          return res.badRequest('Unable to add this guest');
       }
-    },
-  
-    updateGuestForm: async function(req, res) {
+  },
+
+  updateGuest: async function(req, res) {
       try {
-        const guest = await Guest.findOne({ id: req.params.id });
-        return res.view('Guest/updateGuest', { guest });
+          const updatedGuest = await Guest.updateOne({ id: req.params.id }).set(req.body);
+          if (updatedGuest) {
+              return res.json(updatedGuest); 
+          } else {
+            return res.notFound('Guest not found'); 
+          }
       } catch (err) {
-        sails.log.error(err); 
-        return res.notFound('Guest not found');
+          sails.log.error(err);
+          return res.badRequest('Unable to update this guest'); 
       }
-    },
-  
-    updateGuest: async function(req, res) {
+  },
+
+  listGuest: async function(req, res) {
       try {
-        const updatedGuest = await Guest.updateOne({ id: req.params.id }).set(req.body);
-        if (updatedGuest) {
-          return res.redirect('/admin/guest');
-        } else {
-          return res.notFound('Guest not found');
-        }
+          let query = {};
+          if (req.query.guestName) {
+              query = { guestName: req.query.guestName };
+          }
+          const guests = await Guest.find(query);
+          return res.json(guests); 
       } catch (err) {
-        sails.log.error(err); 
-        return res.badRequest('Unable to update this guest');
+          sails.log.error(err);
+          return res.serverError('Internal Server Error');
       }
-    },
-  
-    listGuest: async function(req, res) {
+  },
+
+  deleteGuest: async function(req, res) {
       try {
-        let query = {};
-        if (req.query.guestName) {
-          query = { guestName: req.query.guestName };
-        }
-        const guests = await Guest.find(query);
-        return res.view('Guest/listGuests', { guests, searchQuery: req.query.guestName });
+          const deletedGuest = await Guest.destroyOne({ id: req.params.id });
+          if (deletedGuest) {
+              return res.json({ message: 'Guest deleted successfully' }); 
+          } else {
+            return res.notFound('Guest not found');
+          }
       } catch (err) {
-        sails.log.error(err); 
-        return res.serverError('Internal Server Error');
+          sails.log.error(err);
+          return res.badRequest('Unable to delete this guest');
       }
-    },
-  
-    deleteGuestForm: async function(req, res) {
-      try {
-        const guest = await Guest.findOne({ id: req.params.id });
-        return res.view('Guest/deleteGuest', { guest });
-      } catch (err) {
-        sails.log.error(err); 
-        return res.notFound('Guest not found');
-      }
-    },
-  
-    deleteGuest: async function(req, res) {
-      try {
-        const deletedGuest = await Guest.destroyOne({ id: req.params.id });
-        if (deletedGuest) {
-          return res.redirect('/admin/guest');
-        } else {
-          return res.notFound('Guest not found');
-        }
-      } catch (err) {
-        sails.log.error(err); 
-        return res.badRequest('Unable to delete this guest');
-      }
-    }
-  };
-  
+  }
+};
+

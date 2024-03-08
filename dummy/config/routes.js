@@ -10,12 +10,10 @@
 
 module.exports.routes = {
   //Routes for Guest
-  'GET /admin/guest/add': 'GuestController.addGuestForm',
+  
   'POST /admin/guest/add': 'GuestController.addGuest',
-  'GET /admin/guest/update/:id': 'GuestController.updateGuestForm',
   'PUT /admin/guest/update/:id': 'GuestController.updateGuest',
   'GET /admin/guest': 'GuestController.listGuest',
-  'GET /admin/guest/delete/:id': 'GuestController.deleteGuestForm',
   'DELETE /admin/guest/delete/:id': 'GuestController.deleteGuest',
   /***************************************************************************
   *                                                                          *
