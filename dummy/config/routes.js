@@ -11,22 +11,22 @@
 module.exports.routes = {
 
   //Guest
-  'POST /admin/guest/add': 'GuestController.addGuest',
-  'PUT /admin/guest/update/:id': 'GuestController.updateGuest',
-  'GET /admin/guest': 'GuestController.listGuest',
-  'DELETE /admin/guest/delete/:id': 'GuestController.deleteGuest',
+  'POST /admin/guest/add': {action:'GuestController.addGuest', cors: false},
+  'PUT /admin/guest/update/:id': {action:'GuestController.updateGuest', cors: false},
+  'GET /admin/guest': {action:'GuestController.listGuest', cors: false},
+  'DELETE /admin/guest/delete/:id': {action:'GuestController.deleteGuest', cors: false},
 
   //Menu
-  'POST /admin/menu/add': 'MenuController.addMenu',
-  'PUT /admin/menu/update/:id': 'MenuController.updateMenu',
-  'GET /admin/menu': 'MenuController.listMenu',
-  'DELETE /admin/menu/delete/:id': 'MenuController.deleteMenu',
+  'POST /admin/menu/add': {action:'MenuController.addMenu', cors: false},
+  'PUT /admin/menu/update/:id': {action:'MenuController.updateMenu', cors: false},
+  'GET /admin/menu': {action:'MenuController.listMenu', cors: false},
+  'DELETE /admin/menu/delete/:id': {action:'MenuController.deleteMenu', cors: false},
 
   //Room
-  'POST /admin/room/add': 'RoomController.addRoom',
-  'PUT /admin/room/update/:id': 'RoomController.updateRoom',
-  'GET /admin/room': 'RoomController.listRoom',
-  'DELETE /admin/room/delete/:id': 'RoomController.deleteRoom',
+  'POST /admin/room/add': {action:'RoomController.addRoom', cors: false}, 
+  'PUT /admin/room/update/:id': {action:'RoomController.updateRoom', cors: false},
+  'GET /admin/room': {action:'RoomController.listRoom', cors: false},
+  'DELETE /admin/room/delete/:id': {action:'RoomController.deleteRoom', cors: false},
   
   //User(Review)
   'POST /userfeed/add': 'UserController.addReview',
@@ -35,7 +35,7 @@ module.exports.routes = {
   //Register
   'POST /signup': 'RegisterController.signup',
   'POST /login': 'RegisterController.login',
-  'POST /admin': 'RegisterController.admin',
+  'POST /admin': {action:'RegisterController.admin', cors: false},
   /***************************************************************************
   *                                                                          *
   * Make the view located at `views/homepage.ejs` your home page.            *
