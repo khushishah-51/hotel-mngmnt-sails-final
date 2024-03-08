@@ -27,8 +27,10 @@ module.exports.routes = {
   'PUT /admin/room/update/:id': 'RoomController.updateRoom',
   'GET /admin/room': 'RoomController.listRoom',
   'DELETE /admin/room/delete/:id': 'RoomController.deleteRoom',
-
-
+  
+  //User(Review)
+  'POST /userfeed/add': 'UserController.addReview',
+  'GET /userfeed': 'UserController.listReview',
   /***************************************************************************
   *                                                                          *
   * Make the view located at `views/homepage.ejs` your home page.            *
