@@ -4,11 +4,7 @@ module.exports = {
     // Add dish
     addMenu: async function (req, res) {
       try {
-        const newMenu = await Menu.create({
-          menuName: req.body.menuName,
-          menuDescription: req.body.menuDescription,
-          price: req.body.price
-        }).fetch();
+        const newMenu = await Menu.create(req.body).fetch();
         return res.json(newMenu); 
       } catch (err) {
         sails.log.error(err);
@@ -21,7 +17,7 @@ module.exports = {
       try {
         const updatedMenu = await Menu.updateOne({ id: req.params.id }).set(req.body);
         if (updatedMenu) {
-          return res.ok(updatedMenu); // Use res.ok() for successful response
+          return res.ok(updatedMenu); 
         } else {
           return res.notFound('Dish not found'); 
         }
@@ -35,7 +31,7 @@ module.exports = {
     listMenu: async function (req, res) {
       try {
         const menus = await Menu.find();
-        return res.ok(menus); // Use res.ok() for successful response
+        return res.ok(menus); 
       } catch (err) {
         sails.log.error(err);
         return res.serverError('Internal Server Error'); 
@@ -47,7 +43,7 @@ module.exports = {
       try {
         const deletedMenu = await Menu.destroyOne({ id: req.params.id });
         if (deletedMenu) {
-          return res.ok({ message: 'Dish deleted successfully' }); // Use res.ok() for successful response
+          return res.ok({ message: 'Dish deleted successfully' }); 
         } else {
           return res.notFound('Menu not found'); 
         }

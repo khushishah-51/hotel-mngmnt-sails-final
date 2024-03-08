@@ -17,7 +17,7 @@ module.exports = {
       try {
         const updatedRoom = await Room.updateOne({ id: req.params.id }).set(req.body);
         if (updatedRoom) {
-          return res.ok(updatedRoom); // Return the updated room
+          return res.ok(updatedRoom); 
         } else {
           return res.notFound({ error: 'Room not found' });
         }
@@ -31,7 +31,7 @@ module.exports = {
     listRoom: async function(req, res) {
       try {
         const rooms = await Room.find();
-        return res.ok(rooms); // Return the list of rooms
+        return res.ok(rooms); 
       } catch (err) {
         sails.log.error(err);
         return res.serverError({ error: 'Internal Server Error' });
