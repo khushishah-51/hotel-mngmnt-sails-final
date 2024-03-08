@@ -31,6 +31,11 @@ module.exports.routes = {
   //User(Review)
   'POST /userfeed/add': 'UserController.addReview',
   'GET /userfeed': 'UserController.listReview',
+
+  //Register
+  'POST /signup': 'RegisterController.signup',
+  'POST /login': 'RegisterController.login',
+  'POST /admin': 'RegisterController.admin',
   /***************************************************************************
   *                                                                          *
   * Make the view located at `views/homepage.ejs` your home page.            *
