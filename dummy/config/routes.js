@@ -22,6 +22,13 @@ module.exports.routes = {
   'GET /admin/menu': 'MenuController.listMenu',
   'DELETE /admin/menu/delete/:id': 'MenuController.deleteMenu',
 
+  //Room
+  'POST /admin/room/add': 'RoomController.addRoom',
+  'PUT /admin/room/update/:id': 'RoomController.updateRoom',
+  'GET /admin/room': 'RoomController.listRoom',
+  'DELETE /admin/room/delete/:id': 'RoomController.deleteRoom',
+
+
   /***************************************************************************
   *                                                                          *
   * Make the view located at `views/homepage.ejs` your home page.            *

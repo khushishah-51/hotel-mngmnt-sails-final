@@ -19,6 +19,13 @@ module.exports.policies = {
   'POST /admin/menu/add': 'isAdmin',
   'PUT /admin/menu/update/:id': 'isAdmin',
   'GET /admin/menu': 'isAdmin',
-  'DELETE /admin/menu/delete/:id': 'isAdmin'
+  'DELETE /admin/menu/delete/:id': 'isAdmin',
+
+  //Room
+  'POST /admin/room/add': 'isAdmin',
+  'PUT /admin/room/update/:id': 'isAdmin',
+  'GET /admin/room': 'isAdmin',
+  'DELETE /admin/room/delete/:id': 'isAdmin'
+
 
 };
