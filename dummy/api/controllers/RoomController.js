@@ -30,7 +30,10 @@ module.exports = {
     // List rooms
     listRoom: async function(req, res) {
       try {
-        const rooms = await Room.find();
+        const pageNumber = req.query.pageNumber || 1; // Default to page 1
+        const pageSize = req.query.pageSize || 10; // Default page size
+        const skip = (pageNumber - 1) * pageSize;        
+        const rooms = await Room.find().populate('guests').limit(pageSize).skip(skip);;
         return res.ok(rooms); 
       } catch (err) {
         sails.log.error(err);

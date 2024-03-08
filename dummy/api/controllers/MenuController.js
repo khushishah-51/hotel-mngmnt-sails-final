@@ -30,7 +30,10 @@ module.exports = {
     // List all dishes
     listMenu: async function (req, res) {
       try {
-        const menus = await Menu.find();
+        const pageNumber = req.query.pageNumber || 1; // Default to page 1
+        const pageSize = req.query.pageSize || 10; // Default page size
+        const skip = (pageNumber - 1) * pageSize;         
+        const menus = await Menu.find().limit(pageSize).skip(skip);
         return res.ok(menus); 
       } catch (err) {
         sails.log.error(err);
