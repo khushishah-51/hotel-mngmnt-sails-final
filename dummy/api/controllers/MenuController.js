@@ -9,7 +9,7 @@ module.exports = {
           menuDescription: req.body.menuDescription,
           price: req.body.price
         }).fetch();
-        return res.created(newMenu); // Use res.created() for successful creation response
+        return res.json(newMenu); 
       } catch (err) {
         sails.log.error(err);
         return res.badRequest('Unable to add this Dish'); 
