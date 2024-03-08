@@ -9,12 +9,19 @@
  */
 
 module.exports.routes = {
-  //Routes for Guest
-  
+
+  //Guest
   'POST /admin/guest/add': 'GuestController.addGuest',
   'PUT /admin/guest/update/:id': 'GuestController.updateGuest',
   'GET /admin/guest': 'GuestController.listGuest',
   'DELETE /admin/guest/delete/:id': 'GuestController.deleteGuest',
+
+  //Menu
+  'POST /admin/menu/add': 'MenuController.addMenu',
+  'PUT /admin/menu/update/:id': 'MenuController.updateMenu',
+  'GET /admin/menu': 'MenuController.listMenu',
+  'DELETE /admin/menu/delete/:id': 'MenuController.deleteMenu',
+
   /***************************************************************************
   *                                                                          *
   * Make the view located at `views/homepage.ejs` your home page.            *

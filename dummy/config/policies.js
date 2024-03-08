@@ -13,6 +13,12 @@ module.exports.policies = {
   'POST /admin/guest/add': 'isAdmin',
   'PUT /admin/guest/update/:id': 'isAdmin',
   'GET /admin/guest': 'isAdmin',
-  'DELETE /admin/guest/delete/:id': 'isAdmin'
+  'DELETE /admin/guest/delete/:id': 'isAdmin',
+
+  //Menu
+  'POST /admin/menu/add': 'isAdmin',
+  'PUT /admin/menu/update/:id': 'isAdmin',
+  'GET /admin/menu': 'isAdmin',
+  'DELETE /admin/menu/delete/:id': 'isAdmin'
 
 };
